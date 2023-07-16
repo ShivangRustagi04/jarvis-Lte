@@ -6,6 +6,7 @@ import webbrowser
 import os
 import smtplib
 import pygame
+import pywhatkit 
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -78,8 +79,21 @@ def main():
             webbrowser.open("youtube.com")
         elif 'open facebook' in query:
             webbrowser.open("facebook.com")
-        elif 'open google' in query:
-            webbrowser.open("google.com")
+        elif 'google search' in query:
+            import wikipedia as googleScrap
+            query = query.replace("jarvis","")
+            query = query.replace("google search","")
+            query = query.replace("google","")
+            speak("this is what i found on internet")
+            pywhatkit.search(query)
+
+
+            try:
+                result = googleScrap.summary(query,2)
+                speak(result)
+            
+            except:
+                speak("no data found to tell")
         elif 'open stackoverflow' in query:
             webbrowser.open("stackoverflow.com")
         elif 'play music' in query:
@@ -112,4 +126,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# hi
