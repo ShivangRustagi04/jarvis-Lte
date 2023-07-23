@@ -45,8 +45,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('youremail@gmail.com', 'your-password')
-    server.sendmail('youremail@gmail.com', to, content)
+    server.login('shivangrustagi04@gmail.com', 'Laxminagar$92')
+    server.sendmail('shivangrustagi04@gmail.com', to, content)
     server.close()
 
 
@@ -113,8 +113,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('youremail@gmail.com', 'your-password')
-    server.sendmail('youremail@gmail.com', to, content)
+    server.login('shivangrustagi04@gmail.com', 'Laxminagar$92')
+    server.sendmail('shivangrustagi04@gmail.com', to, content)
     server.close()
 
 
@@ -125,6 +125,11 @@ def play_music(file_path):
 
 
 def main():
+    def music():
+        speak("tell me your music name")
+        musicname = takeCommand()
+        pywhatkit.playonyt(musicname)
+        speak("your music is playing , enjoy it")
     wishMe()
     while True:
         query = takeCommand().lower()
@@ -167,6 +172,8 @@ def main():
             query = query.replace("google search","")
             pywhatkit.search(query)
             speak("DONE sir")
+        elif "music" in query:
+            music()
         elif "website" in query:
             speak("ok sir , launching....")
             query = query.replace("jarvis","")
@@ -222,7 +229,7 @@ def main():
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
 
-        elif 'gmail to shivang' in query:
+        elif 'gmail' in query:
             try:
                 speak("What should I say?")
                 content = takeCommand()
@@ -232,16 +239,8 @@ def main():
             except Exception as e:
                 print(e)
                 speak("Sorry, I am not able to send this email")
-
         elif 'exit' in query:
             speak("Goodbye!")
-            exit()
-
-
+            exit
 if __name__ == "__main__":
     main()
-
-            
-
-        
-            
