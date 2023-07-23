@@ -75,6 +75,60 @@ def main():
             print(results)
             speak(results)
 
+        if "hello" in query:
+            speak("hello sir, i am jarvis ")
+            speak("i am your ai assistant")
+            speak("how can i help you ")
+        elif "how are you " in query:
+            speak(" i am fine sir thank you for asking")
+        elif "you need break" in query:
+            speak("arlight you can call me anytime")
+            break
+
+        elif " kya haal hai" in query:
+            speak("sab jhakaas hai")
+        elif "bye"in query:
+            speak("have a good day ahead")
+            break
+
+        elif "main aacha hoon tum batao" in query:
+            speak("main bhi")
+            break
+        elif "youtube search" in query:
+            speak("ok sir , finding")
+            query = query.replace("jarvis","")
+            query = query.replace("youtube search","")
+            web = "https://www.youtube.com/results?search_query="  + query
+            webbrowser.open(web)
+            speak("this is what i found")
+        elif "google search" in query:
+            speak("okay sir finding")
+            query = query.replace("jarvis","")
+            query = query.replace("google search","")
+            pywhatkit.search(query)
+            speak("DONE sir")
+        elif "website" in query:
+            speak("ok sir , launching....")
+            query = query.replace("jarvis","")
+            query = query.replace("website","")
+            web1 = query.replace("open","")
+            web2 = "https://www." + web1 + ".com"
+            webbrowser.open(web2)
+            speak("launched")
+        elif "launch" in query:
+            speak("ok launching the website you said")
+            name = takeCommand()
+            web = "https://www." + name +".com"
+            webbrowser.open(web)
+            speak("done sir")
+        elif 'wikipedia' in query:
+            speak('Searching Wikipedia...')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=2)
+            speak("According to Wikipedia")
+            print(results)
+            speak(results)
+
         elif 'open youtube' in query:
             webbrowser.open("youtube.com")
         elif 'open facebook' in query:
