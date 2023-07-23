@@ -34,8 +34,7 @@ def takecommand():
             return "none"
         
         return query.lower()
-
-# query = takecommand()
+query = takecommand()
 
 # if "hello" in query:
 #     speak("hello sir")
