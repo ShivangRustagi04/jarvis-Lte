@@ -7,6 +7,8 @@ import wikipedia
 import os
 import smtplib
 import pygame
+import pyautogui
+import keyboard
  
 Assistant = pyttsx3.init("sapi5")
 voices = Assistant.getProperty("voices")
@@ -18,23 +20,6 @@ def speak(audio):
     Assistant.say(audio)
     Assistant.runAndWait()
 
-def takecommand():
-    command = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("listening.....")
-        command.pause_threshold = 1
-        audio = command.listen(source)
-
-        try:
-            print("recognizing.....")
-            query = command.recognize_google(audio, language="en - in")
-            print(f"you said : {query}")
-
-        except Exception as error:
-            return "none"
-        
-        return query.lower()
-query = takecommand()
 
 # if "hello" in query:
 #     speak("hello sir")
@@ -55,12 +40,8 @@ def play_music(file_path):
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 
-def taskexe(): 
 
-    while True:
-        query = takecommand()
-
-        import pyttsx3
+import pyttsx3
 import speech_recognition as sr
 import datetime
 import wikipedia
@@ -69,7 +50,7 @@ import os
 import smtplib
 import pygame
 import pywhatkit 
-
+import pyautogui
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
@@ -130,6 +111,43 @@ def main():
         musicname = takeCommand()
         pywhatkit.playonyt(musicname)
         speak("your music is playing , enjoy it")
+    def whatsapp():
+        speak("tell me the name of person")
+        name = takeCommand()
+
+        if "shlok" in name:
+            speak("tell me the message!!")
+            msg = takeCommand()
+            speak("tell me time in hour and minute")
+            hour = int(takeCommand())
+            min = int(takeCommand())
+            pywhatkit.sendWhatmsg("+919899755982", msg , hour, min , 20)
+            speak("ook sir your message will be send!!")   
+    def youtubeAuto():
+        speak("what is your command")
+        comm = takeCommand()
+
+        if 'pause' in comm:
+            keyboard.press("space bar")
+
+        elif "restart" in comm:
+            keyboard.press("0")
+        elif "mute" in comm:
+            keyboard.press("m")
+        elif "back" in comm :
+            keyboard.press("j")
+        elif "skip" in comm :
+            keyboard.press("l")
+        elif "full screen" in comm :
+            keyboard.press("f")
+        elif "exit full screen" in comm :
+            keyboard.press("f")
+        elif "film mode" in comm :
+            keyboard.press("t")
+        speak("done sir")
+
+
+
     wishMe()
     while True:
         query = takeCommand().lower()
@@ -174,6 +192,8 @@ def main():
             speak("DONE sir")
         elif "music" in query:
             music()
+        elif "whatsapp" in query:
+            whatsapp()
         elif "website" in query:
             speak("ok sir , launching....")
             query = query.replace("jarvis","")
@@ -228,7 +248,22 @@ def main():
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
-
+        elif "restart" in query:
+            keyboard.press("0")
+        elif "mute" in query:
+            keyboard.press("m")
+        elif "back" in query :
+            keyboard.press("j")
+        elif "skip" in query :
+            keyboard.press("l")
+        elif "full screen" in query :
+            keyboard.press("f")
+        elif "exit full screen" in query :
+            keyboard.press("f")
+        elif "film mode" in query :
+            keyboard.press("t")
+        elif "pause" in query:
+            keyboard.press("k")
         elif 'gmail' in query:
             try:
                 speak("What should I say?")
