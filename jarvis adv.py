@@ -106,30 +106,33 @@ def main():
             pywhatkit.sendWhatmsg("+919899755982", msg , hour, min , 20)
             speak("ook sir your message will be send!!")   
     def dict():
-        speak("tell me problem")
-        prob1 = takeCommand()
-        if "meaning" in prob1:
+         speak("activated dictionary")
+         speak("tell me problem")
+         prob1 = takeCommand()
+         if "meaning" in prob1:
             prob1 = prob1.replace("what is the","")
             prob1 = prob1.replace("jarvis","")
-            prob1 = prob1.replace("of")
+            prob1 = prob1.replace("of","")
             prob1 = prob1.replace("meaning","")
             result = diction.meaning(prob1)
-            speak = (f"the meaning for {prob1} is {result}")
-        elif "synonym" in prob1:
+            speak(f"the meaning for {prob1} is {result}")
+         elif "synonym" in prob1:
             prob1 = prob1.replace("what is the","")
             prob1 = prob1.replace("jarvis","")
-            prob1 = prob1.replace("of")
+            prob1 = prob1.replace("of","")
             prob1 = prob1.replace("synonym","")
             result = diction.synonym(prob1)
-            speak = (f"the synonym for {prob1} is {result}")
-        elif "antonym" in prob1:
+            speak(f"the synonym for {prob1} is {result}")
+         elif "antonym" in prob1:
             prob1 = prob1.replace("what is the","")
             prob1 = prob1.replace("jarvis","")
-            prob1 = prob1.replace("of")
+            prob1 = prob1.replace("of","")
             prob1 = prob1.replace("antonym","")
             result = diction.antonym(prob1)
-            speak = (f"the antonym for {prob1} is {result}")
-        speak ("exited")
+            speak(f"the antonym for {prob1} is {result}")
+         speak ("exited")
+    # def screenshot():
+
              
     def youtubeAuto():
         speak("what is your command")
