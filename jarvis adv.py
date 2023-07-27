@@ -9,6 +9,8 @@ import smtplib
 import pygame
 import pyautogui
 import keyboard
+import pyjokes
+from PyDictionary import PyDictionary as diction
  
 Assistant = pyttsx3.init("sapi5")
 voices = Assistant.getProperty("voices")
@@ -40,27 +42,7 @@ def play_music(file_path):
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 
-
-import pyttsx3
-import speech_recognition as sr
-import datetime
-import wikipedia
-import webbrowser
-import os
-import smtplib
-import pygame
-import pywhatkit 
-import pyautogui
-engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
-
-
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-
-
+    
 def wishMe():
     hour = datetime.datetime.now().hour
     if 0 <= hour < 12:
@@ -123,6 +105,32 @@ def main():
             min = int(takeCommand())
             pywhatkit.sendWhatmsg("+919899755982", msg , hour, min , 20)
             speak("ook sir your message will be send!!")   
+    def dict():
+        speak("tell me problem")
+        prob1 = takeCommand()
+        if "meaning" in prob1:
+            prob1 = prob1.replace("what is the","")
+            prob1 = prob1.replace("jarvis","")
+            prob1 = prob1.replace("of")
+            prob1 = prob1.replace("meaning","")
+            result = diction.meaning(prob1)
+            speak = (f"the meaning for {prob1} is {result}")
+        elif "synonym" in prob1:
+            prob1 = prob1.replace("what is the","")
+            prob1 = prob1.replace("jarvis","")
+            prob1 = prob1.replace("of")
+            prob1 = prob1.replace("synonym","")
+            result = diction.synonym(prob1)
+            speak = (f"the synonym for {prob1} is {result}")
+        elif "antonym" in prob1:
+            prob1 = prob1.replace("what is the","")
+            prob1 = prob1.replace("jarvis","")
+            prob1 = prob1.replace("of")
+            prob1 = prob1.replace("antonym","")
+            result = diction.antonym(prob1)
+            speak = (f"the antonym for {prob1} is {result}")
+        speak ("exited")
+             
     def youtubeAuto():
         speak("what is your command")
         comm = takeCommand()
@@ -145,6 +153,23 @@ def main():
         elif "film mode" in comm :
             keyboard.press("t")
         speak("done sir")
+    
+    def chromeAuto():
+        speak(" chrome automation started successfully")
+
+        command = takeCommand()
+
+        if "close this tab" in command:
+            keyboard.press_and_release("ctrl + w")
+        elif "open new tab" in command:
+            keyboard.press_and_release("ctrl + t")
+        elif "open new window" in command:
+            keyboard.press_and_release("ctrl + n")
+        elif "open history" in command:
+            keyboard.press_and_release("ctrl + h")
+        elif "open previous tab" in command:
+            keyboard.press_and_release("ctrl + shift + t")
+
 
 
 
@@ -202,6 +227,8 @@ def main():
             web2 = "https://www." + web1 + ".com"
             webbrowser.open(web2)
             speak("launched")
+        elif 'dictionary' in query:
+            dict()
         elif "launch" in query:
             speak("ok launching the website you said")
             name = takeCommand()
@@ -215,6 +242,9 @@ def main():
             speak("According to Wikipedia")
             print(results)
             speak(results)
+        elif "joke" in query:
+            get = pyjokes.get_joke()
+            speak(get) 
 
         elif 'open youtube' in query:
             webbrowser.open("youtube.com")
@@ -264,6 +294,25 @@ def main():
             keyboard.press("t")
         elif "pause" in query:
             keyboard.press("k")
+        elif "youtube tool" in query:
+            youtubeAuto()
+        elif "close this tab" in query:
+            keyboard.press_and_release("ctrl + w")
+        elif "open new tab" in query:
+            keyboard.press_and_release("ctrl + t")
+        elif "open new window" in query:
+            keyboard.press_and_release("ctrl + n")
+        elif "open history" in query:
+            keyboard.press_and_release("ctrl + h")
+        elif "open previous tab" in query:
+            keyboard.press_and_release("ctrl + shift + t")
+        elif "chrome auto" in query:
+            chromeAuto()
+        elif "repeat my words" in query:
+            speak("speak sir")
+            jj = takeCommand()
+            speak(f"you said : {jj}")
+            
         elif 'gmail' in query:
             try:
                 speak("What should I say?")
@@ -276,6 +325,6 @@ def main():
                 speak("Sorry, I am not able to send this email")
         elif 'exit' in query:
             speak("Goodbye!")
-            exit
+            break
 if __name__ == "__main__":
     main()
