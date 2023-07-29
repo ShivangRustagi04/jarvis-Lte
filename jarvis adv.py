@@ -131,7 +131,15 @@ def main():
             result = diction.antonym(prob1)
             speak(f"the antonym for {prob1} is {result}")
          speak ("exited")
-    # def screenshot():
+    def screenshot():
+        speak("ok but tell me name of screenshot")
+        path = takeCommand()
+        path1name = path + '.png'
+        path1 = "C:\\Users\\shiva\\OneDrive\Desktop\\screenshot\\" + path1name
+        kk = pyautogui.screenshot()
+        kk.save(path1)
+        os.startfile("C:\\Users\\shiva\\OneDrive\\Desktop\\screenshot")
+        speak(" screenshot taken")
 
              
     def youtubeAuto():
@@ -212,6 +220,8 @@ def main():
             web = "https://www.youtube.com/results?search_query="  + query
             webbrowser.open(web)
             speak("this is what i found")
+        elif "screenshot" in query:
+            screenshot()
         elif "google search" in query:
             speak("okay sir finding")
             query = query.replace("jarvis","")
@@ -226,6 +236,7 @@ def main():
             speak("ok sir , launching....")
             query = query.replace("jarvis","")
             query = query.replace("website","")
+            query = query.replace(" ","")
             web1 = query.replace("open","")
             web2 = "https://www." + web1 + ".com"
             webbrowser.open(web2)
